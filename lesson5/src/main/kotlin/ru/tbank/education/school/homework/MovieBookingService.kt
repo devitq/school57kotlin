@@ -18,8 +18,10 @@ data class BookedSeat(
 class MovieBookingService(
     private val maxQuantityOfSeats: Int // Максимальное кол-во мест
 ) {
+    private val books = mutableSetOf<BookedSeat>()
+
     init {
-        TODO("Выбрасывать IllegalArgumentException, максимальное кол-во мест отрицательное или равно нулю")
+        require(maxQuantityOfSeats > 0) { "maxQuantityOfSeats must be > 0" }
     }
 
     /**
@@ -32,7 +34,14 @@ class MovieBookingService(
      * @throws SeatAlreadyBookedException если место уже забронировано
      */
     fun bookSeat(movieId: String, seat: Int) {
-        TODO("Реализовать логику")
+        require(seat in 1..this.maxQuantityOfSeats)
+        if (this.books.count { it.movieId == movieId } >= maxQuantityOfSeats) {
+            throw NoAvailableSeatException("No books available for $movieId")
+        }
+        if (this.isSeatBooked(movieId, seat)) {
+            throw SeatAlreadyBookedException("Seat $seat is already booked for $movieId")
+        }
+        this.books.add(BookedSeat(movieId, seat))
     }
 
     /**
@@ -43,7 +52,10 @@ class MovieBookingService(
      * @throws NoSuchElementException если место не было забронировано
      */
     fun cancelBooking(movieId: String, seat: Int) {
-        TODO("Реализовать логику")
+        if (!this.isSeatBooked(movieId, seat)) {
+            throw NoSuchElementException("Seat $seat has not been booked yet for $movieId")
+        }
+        this.books.remove(BookedSeat(movieId, seat))
     }
 
     /**
@@ -52,6 +64,6 @@ class MovieBookingService(
      * @return true если место занято, false иначе
      */
     fun isSeatBooked(movieId: String, seat: Int): Boolean {
-        TODO("Реализовать логику")
+        return this.books.any { it.movieId == movieId && it.seat == seat }
     }
 }
