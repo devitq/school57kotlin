@@ -35,11 +35,14 @@ class IncomeExpenseRatioRule(
 
         var income = 0.0
         var expenses = 0.0
+        var allTransactionsOlderThanThreeMonthsAgo = true
 
         for (transaction in transactions) {
             if (transaction.date.isBefore(threeMonthsAgo)) {
                 continue
             }
+
+            allTransactionsOlderThanThreeMonthsAgo = false
 
             if (transaction.category == TransactionCategory.SALARY) {
                 income += transaction.amount
@@ -49,7 +52,7 @@ class IncomeExpenseRatioRule(
         }
 
         val risk = when {
-            expenses > income -> PaymentRisk.HIGH
+            expenses > income || allTransactionsOlderThanThreeMonthsAgo -> PaymentRisk.HIGH
             income > 0 && kotlin.math.abs(expenses - income) / income <= 0.2 -> PaymentRisk.MEDIUM
             else -> PaymentRisk.LOW
         }

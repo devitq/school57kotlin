@@ -52,7 +52,7 @@ class HighRiskCategorySpendingRule(
 
         val risk = when {
             ratio > 0.6 -> PaymentRisk.HIGH
-            ratio > 0.3 -> PaymentRisk.MEDIUM
+            ratio > 0.3 || ratio == 0.0 -> PaymentRisk.MEDIUM
             else -> PaymentRisk.LOW
         }
 

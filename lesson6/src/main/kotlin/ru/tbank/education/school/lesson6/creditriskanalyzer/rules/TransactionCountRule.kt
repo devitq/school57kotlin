@@ -34,7 +34,7 @@ class TransactionCountRule(
         }
 
         val risk = when {
-            count >= 1000 -> PaymentRisk.LOW
+            count > 1000 -> PaymentRisk.LOW
             count >= 500 -> PaymentRisk.MEDIUM
             else -> PaymentRisk.HIGH
         }
