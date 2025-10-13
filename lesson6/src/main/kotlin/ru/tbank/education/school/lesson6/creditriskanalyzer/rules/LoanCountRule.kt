@@ -27,7 +27,7 @@ class LoanCountRule(
         val overdues = overdueRepository.getOverdues(client.id)
 
         var count = 0
-        
+
         for (loan in loans) {
             if (!loan.isClosed) {
                 for (overdue in overdues) {
@@ -37,7 +37,7 @@ class LoanCountRule(
                 }
             }
         }
-        
+
         val risk = when {
             count > 3 -> PaymentRisk.HIGH
             count >= 1 -> PaymentRisk.MEDIUM

@@ -13,7 +13,7 @@ import ru.tbank.education.school.lesson6.creditriskanalyzer.repositories.LoanRep
  * - Получить все активные кредиты клиента (isClosed == false)
  * - Посчитать общий долг (sumOf(debt))
  * - Посчитать общий баланс на всех счетах
- * 
+ *
  * Как считать score:
  * - Если долг > 3 * баланс → HIGH
  * - Если долг > баланс, но < 3 * баланс → MEDIUM
