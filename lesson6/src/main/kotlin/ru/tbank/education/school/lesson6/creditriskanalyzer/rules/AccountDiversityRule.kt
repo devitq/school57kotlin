@@ -24,12 +24,12 @@ class AccountDiversityRule(
     override val ruleName: String = "Account Diversity"
 
     override fun evaluate(client: Client): ScoringResult {
-        val clientAccounts = accountRepo.getAccounts(client.id)
+        val client = accountRepo.getAccounts(client.id)
 
         val uniqueAccountTypes = mutableSetOf<AccountType>();
         val uniqueAccountCurrencies = mutableSetOf<Currency>();
 
-        for (account in clientAccounts) {
+        for (account in client) {
             uniqueAccountTypes.add(account.type)
             uniqueAccountCurrencies.add(account.currency)
         }
@@ -41,6 +41,6 @@ class AccountDiversityRule(
             uniqueCount <= 4 -> PaymentRisk.MEDIUM
             else -> PaymentRisk.LOW
         }
-        return ScoringResult(this.ruleName, risk)
+        return ScoringResult(ruleName, risk)
     }
 }
