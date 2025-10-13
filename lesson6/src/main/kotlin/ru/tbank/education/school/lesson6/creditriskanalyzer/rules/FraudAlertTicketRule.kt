@@ -1,7 +1,9 @@
 package ru.tbank.education.school.lesson6.creditriskanalyzer.rules
 
 import ru.tbank.education.school.lesson6.creditriskanalyzer.models.Client
+import ru.tbank.education.school.lesson6.creditriskanalyzer.models.PaymentRisk
 import ru.tbank.education.school.lesson6.creditriskanalyzer.models.ScoringResult
+import ru.tbank.education.school.lesson6.creditriskanalyzer.models.TicketTopic
 import ru.tbank.education.school.lesson6.creditriskanalyzer.repositories.TicketRepository
 
 /**
@@ -25,6 +27,27 @@ class FraudAlertTicketRule(
     override val ruleName: String = "Fraud Alert Ticket"
 
     override fun evaluate(client: Client): ScoringResult {
-        TODO()
+        val tickets = ticketRepo.getTickets(client.id)
+
+        var hasFraudAlert = false
+        var unresolvedFraudAlert = false
+
+        for (ticket in tickets) {
+            if (ticket.topic == TicketTopic.FRAUD_ALERT) {
+                hasFraudAlert = true
+                if (!ticket.resolved) {
+                    unresolvedFraudAlert = true
+                    break
+                }
+            }
+        }
+
+        val risk = when {
+            unresolvedFraudAlert -> PaymentRisk.HIGH
+            hasFraudAlert -> PaymentRisk.MEDIUM
+            else -> PaymentRisk.LOW
+        }
+
+        return ScoringResult(ruleName, risk)
     }
 }
