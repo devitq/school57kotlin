@@ -1,19 +1,18 @@
 package ru.tbank.education.school.lesson7.practise.task1
 
 /**
- *
  * Дано: список сотрудников.
  *
  * Нужно:
- *  - Посчитать общую сумму зарплат (`totalSalary`),
- *  - Среднюю зарплату (`avgSalary`),
- *  - Количество отделов (`departmentsCount`).
+ * - Посчитать общую сумму зарплат (`totalSalary`),
+ * - Среднюю зарплату (`avgSalary`),
+ * - Количество отделов (`departmentsCount`).
  *
  * Верни результат в виде `SalaryReport`.
  *
  * Подсказки:
- *  - `fold(initial, operation)` — позволяет задать аккумулятор с другим типом.
- *  - Используй `Set` для накопления уникальных департаментов.
+ * - `fold(initial, operation)` — позволяет задать аккумулятор с другим типом.
+ * - Используй `Set` для накопления уникальных департаментов.
  *
  * Пример:
  * ```
@@ -26,8 +25,14 @@ package ru.tbank.education.school.lesson7.practise.task1
  * ```
  */
 data class Employee(val name: String, val salary: Double, val department: String)
+
 data class SalaryReport(val totalSalary: Double, val avgSalary: Double, val departmentsCount: Int)
 
 fun buildSalaryReport(employees: List<Employee>): SalaryReport {
-    TODO()
+  val totalSalary = employees.sumOf { it.salary }
+  return SalaryReport(
+      totalSalary = totalSalary,
+      avgSalary = if (employees.isNotEmpty()) totalSalary / employees.size else 0.0,
+      departmentsCount = employees.map { employee -> employee.department }.toSet().size,
+  )
 }
