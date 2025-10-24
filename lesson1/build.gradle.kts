@@ -1,5 +1,1 @@
-plugins {
-    buildlogic.`kotlin-common-conventions-no-detekt`
-}
-
-
+plugins { buildlogic.`kotlin-common-conventions-no-detekt` }

@@ -1,8 +1,9 @@
 package ru.tbank.education.school.lesson1
 
-/**
- * Список операций.
- */
+/** Список операций. */
 enum class OperationType {
-    ADD, SUBTRACT, MULTIPLY, DIVIDE
+  ADD,
+  SUBTRACT,
+  MULTIPLY,
+  DIVIDE,
 }

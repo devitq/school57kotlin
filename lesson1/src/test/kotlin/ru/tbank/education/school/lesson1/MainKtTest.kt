@@ -8,12 +8,18 @@ import com.tngtech.archunit.lang.syntax.ArchRuleDefinition
 import org.junit.jupiter.api.Test
 
 class MainKtTest {
-    @Test
-    fun checkUsageSystemClass() {
-        val jc: JavaClasses = ClassFileImporter().withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
+  @Test
+  fun checkUsageSystemClass() {
+    val jc: JavaClasses =
+        ClassFileImporter()
+            .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
             .importPackages("ru.tbank.education.school.lesson1")
-        val r1: ArchRule = ArchRuleDefinition.classes().that().haveSimpleNameContaining("MainKt").should()
+    val r1: ArchRule =
+        ArchRuleDefinition.classes()
+            .that()
+            .haveSimpleNameContaining("MainKt")
+            .should()
             .callMethod(java.io.PrintStream::class.java, "println", Object::class.java)
-        r1.check(jc)
-    }
+    r1.check(jc)
+  }
 }
