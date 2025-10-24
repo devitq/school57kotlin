@@ -1,12 +1,9 @@
-plugins {
-    buildlogic.`kotlin-common-conventions-no-detekt`
-}
-
+plugins { buildlogic.`kotlin-common-conventions-no-detekt` }
 
 tasks.test {
-    doFirst {
-        project.projectDir.resolve("src/test/resources")?.listFiles()?.forEach {
-            it.deleteRecursively()
-        }
+  doFirst {
+    project.projectDir.resolve("src/test/resources")?.listFiles()?.forEach {
+      it.deleteRecursively()
     }
+  }
 }
