@@ -1,35 +1,37 @@
 package ru.tbank.education.school.lesson7.lection
 
 fun main() {
-    val numbersList = listOf(1, 2, 3, 4, 5)
+  val numbersList = listOf(1, 2, 3, 4, 5)
 
-    val resultList = numbersList
-        .map {
+  val resultList =
+      numbersList
+          .map {
             println("map $it")
             it * 2
-        }
-        .filter {
+          }
+          .filter {
             println("filter $it")
             it > 5
-        }
-        .toList()
+          }
+          .toList()
 
-    println("Результат: $resultList")
+  println("Результат: $resultList")
 
-    println("------------------------")
+  println("------------------------")
 
-    val numbersSequence = sequenceOf(1, 2, 3, 4, 5)
+  val numbersSequence = sequenceOf(1, 2, 3, 4, 5)
 
-    val resultSequence = numbersSequence
-        .map {
+  val resultSequence =
+      numbersSequence
+          .map {
             println("map $it")
             it * 2
-        }
-        .filter {
+          }
+          .filter {
             println("filter $it")
             it > 5
-        }
-        .toList()
+          }
+          .toList()
 
-    println("Результат: $resultSequence")
+  println("Результат: $resultSequence")
 }

@@ -5,7 +5,8 @@ import java.time.LocalDate
 /**
  * Задание 4. Дата через infix
  *
- * Реализуй infix-функцию, которая создаёт дату, добавляя указанное количество дней к текущему моменту.
+ * Реализуй infix-функцию, которая создаёт дату, добавляя указанное количество дней к текущему
+ * моменту.
  *
  * Пример:
  * ```
@@ -13,5 +14,4 @@ import java.time.LocalDate
  * println(deadline) // Текущая дата + 5 дней
  * ```
  */
-
-infix fun Int.daysFromNow(ignore: Unit): LocalDate = TODO()
+infix fun Int.daysFromNow(ignore: Unit): LocalDate = LocalDate.now().plusDays(this.toLong())
