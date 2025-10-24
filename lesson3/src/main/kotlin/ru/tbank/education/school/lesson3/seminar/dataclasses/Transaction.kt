@@ -5,18 +5,17 @@ data class Transaction(
     val id: String,
     val fromAccount: String,
     val toAccount: String,
-    val amount: Double
+    val amount: Double,
 )
 
-
 fun main() {
-    val tx1 = Transaction("TX-1", "ACC-1", "ACC-2", 100.0)
+  val tx1 = Transaction("TX-1", "ACC-1", "ACC-2", 100.0)
 
-    println(tx1)
+  println(tx1)
 
-    val tx2 = tx1.copy(amount = 200.0)
+  val tx2 = tx1.copy(amount = 200.0)
 
-    println(tx2)
+  println(tx2)
 
-    println(tx1 == tx2)
+  println(tx1 == tx2)
 }

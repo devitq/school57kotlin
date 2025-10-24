@@ -7,12 +7,12 @@ data class EmailAttachment(
     val filename: String,
     val sizeBytes: Long,
 ) {
-    val id: String = UUID.randomUUID().toString()
+  val id: String = UUID.randomUUID().toString()
 
-    init {
-        require(filename.isNotBlank())
-        require(sizeBytes > 0)
-    }
+  init {
+    require(filename.isNotBlank())
+    require(sizeBytes > 0)
+  }
 
-    constructor() : this(UUID.randomUUID().toString(), Random.Default.nextLong(100, 10_000))
+  constructor() : this(UUID.randomUUID().toString(), Random.Default.nextLong(100, 10_000))
 }
