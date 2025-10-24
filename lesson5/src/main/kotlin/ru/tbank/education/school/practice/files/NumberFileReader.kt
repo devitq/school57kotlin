@@ -3,7 +3,6 @@ package ru.tbank.education.school.practice.files
 import java.io.File
 import java.io.IOException
 
-
 /**
  * Читает число из файла.
  *
@@ -13,25 +12,24 @@ import java.io.IOException
  */
 class NumberFileReader(private val path: String) {
 
-    fun readNumber(): Int? {
-        try {
-            val file = File(path)
-            val content = file.readText()
-            return content.trim().toInt()
-        } catch (ex: IOException) {
-            println("Ошибка IO: ${ex.message}")
-            return null
-        } catch (ex: NumberFormatException) {
-            println("Ошибка приведения к целочисленному типу: ${ex.message}")
-            return null
-        }
+  fun readNumber(): Int? {
+    try {
+      val file = File(path)
+      val content = file.readText()
+      return content.trim().toInt()
+    } catch (ex: IOException) {
+      println("Ошибка IO: ${ex.message}")
+      return null
+    } catch (ex: NumberFormatException) {
+      println("Ошибка приведения к целочисленному типу: ${ex.message}")
+      return null
     }
-
+  }
 }
 
-//fun main() {
+// fun main() {
 //    val path = "./lesson5/numbers.txt"
 //
 //    val reader = NumberFileReader(path)
 //    println(reader.readNumber())
-//}
+// }
