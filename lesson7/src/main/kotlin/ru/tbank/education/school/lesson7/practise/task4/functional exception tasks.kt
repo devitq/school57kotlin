@@ -4,9 +4,9 @@ package ru.tbank.education.school.lesson7.practise.task4
  * Задание 1. Безопасный парсинг Int
  *
  * Реализуй функцию `parseIntSafe(value: String): Result<Int>`, которая:
- *  - Преобразует строку в число.
- *  - Возвращает `Result.success`, если удалось.
- *  - Возвращает `Result.failure`, если возникло исключение (`NumberFormatException`).
+ * - Преобразует строку в число.
+ * - Возвращает `Result.success`, если удалось.
+ * - Возвращает `Result.failure`, если возникло исключение (`NumberFormatException`).
  *
  * Подсказка:
  * - Используй `runCatching { ... }`
@@ -20,15 +20,14 @@ package ru.tbank.education.school.lesson7.practise.task4
  * println(r2.isFailure) // true
  * ```
  */
-fun parseIntSafe(value: String): Result<Int> = TODO()
-
+fun parseIntSafe(value: String): Result<Int> = runCatching { value.toInt() }
 
 /**
  * Задание 2. Значение по умолчанию
  *
  * Реализуй функцию `parseWithDefault(input: String, default: Int): Int`, которая:
- *  - Возвращает число, если оно корректное.
- *  - Если произошла ошибка — возвращает `default`.
+ * - Возвращает число, если оно корректное.
+ * - Если произошла ошибка — возвращает `default`.
  *
  * Подсказка:
  * - Используй `runCatching` и `.getOrElse { ... }`.
@@ -39,17 +38,16 @@ fun parseIntSafe(value: String): Result<Int> = TODO()
  * println(parseWithDefault("abc", 0)) // 0
  * ```
  */
-fun parseWithDefault(input: String, default: Int): Int = TODO()
-
+fun parseWithDefault(input: String, default: Int): Int =
+    runCatching { input.toInt() }.getOrDefault(default)
 
 /**
  * Задание 3. Логирование через onFailure
  *
  * Реализуй функцию `safeDivideLogged(a: Int, b: Int): Result<Double>`, которая:
- *  - Делит `a` на `b`.
- *  - Если происходит ошибка, печатает сообщение:
- *    "Ошибка деления: ${e.message}"
- *  - Возвращает `Result` (не бросает исключение).
+ * - Делит `a` на `b`.
+ * - Если происходит ошибка, печатает сообщение: "Ошибка деления: ${e.message}"
+ * - Возвращает `Result` (не бросает исключение).
  *
  * Пример:
  * ```
@@ -57,4 +55,6 @@ fun parseWithDefault(input: String, default: Int): Int = TODO()
  * // Выводит: Ошибка деления: / by zero
  * ```
  */
-fun safeDivideLogged(a: Int, b: Int): Result<Double> = TODO()
+fun safeDivideLogged(a: Int, b: Int): Result<Double> =
+    runCatching { a.toDouble() / b.toDouble() }
+        .onFailure { e -> println("Ошибка деления: ${e.message}") }
