@@ -1,6 +1,7 @@
 package ru.tbank.education.school.lesson6.creditriskanalyzer.rules
 
 import ru.tbank.education.school.lesson6.creditriskanalyzer.models.Client
+import ru.tbank.education.school.lesson6.creditriskanalyzer.models.PaymentRisk
 import ru.tbank.education.school.lesson6.creditriskanalyzer.models.ScoringResult
 import ru.tbank.education.school.lesson6.creditriskanalyzer.repositories.AccountRepository
 import ru.tbank.education.school.lesson6.creditriskanalyzer.repositories.LoanRepository
@@ -12,7 +13,7 @@ import ru.tbank.education.school.lesson6.creditriskanalyzer.repositories.LoanRep
  * - Получить все активные кредиты клиента (isClosed == false)
  * - Посчитать общий долг (sumOf(debt))
  * - Посчитать общий баланс на всех счетах
- * 
+ *
  * Как считать score:
  * - Если долг > 3 * баланс → HIGH
  * - Если долг > баланс, но < 3 * баланс → MEDIUM
@@ -27,6 +28,27 @@ class LoanDebtRatioRule(
     override val ruleName: String = "Loan Debt Ratio"
 
     override fun evaluate(client: Client): ScoringResult {
-        TODO()
+        val loans = loanRepo.getLoans(client.id)
+        val accounts = accountRepo.getAccounts(client.id)
+
+        var debtSum = 0.0
+        for (loan in loans) {
+            if (!loan.isClosed) {
+                debtSum += loan.debt
+            }
+        }
+
+        var balanceSum = 0.0
+        for (account in accounts) {
+            balanceSum += account.balance
+        }
+
+        val risk = when {
+            debtSum > 3 * balanceSum -> PaymentRisk.HIGH
+            debtSum > balanceSum -> PaymentRisk.MEDIUM
+            else -> PaymentRisk.LOW
+        }
+
+        return ScoringResult(ruleName, risk)
     }
 }
