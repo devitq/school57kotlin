@@ -1,8 +1,6 @@
 package ru.tbank.education.school.lesson2
 
-/**
- * Сумма четных чисел.
- */
+/** Сумма четных чисел. */
 fun sumEvenNumbers(numbers: List<Int>): Int {
-    return DemoList.sumEvenList(numbers)
+  return DemoList.sumEvenList(numbers)
 }
