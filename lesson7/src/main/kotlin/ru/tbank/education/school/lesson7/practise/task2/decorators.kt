@@ -1,5 +1,7 @@
 package ru.tbank.education.school.lesson7.practise.task2
 
+import kotlin.system.measureTimeMillis
+
 /**
  * Реализуй декоратор limitRate(intervalMs: Long, f: (A) -> R): (A) -> R?
  *
@@ -20,7 +22,17 @@ package ru.tbank.education.school.lesson7.practise.task2
  * printMessage("C") // выполняется
  */
 fun <A, R> limitRate(intervalMs: Long, f: (A) -> R): (A) -> R? {
-    TODO()
+    var lastCallTime = 0L
+    return {
+        arg: A ->
+        val now = System.currentTimeMillis()
+        if (now - lastCallTime >= intervalMs) {
+            lastCallTime = now
+            f(arg)
+        } else {
+            null
+        }
+    }
 }
 
 
@@ -40,7 +52,10 @@ fun <A, R> limitRate(intervalMs: Long, f: (A) -> R): (A) -> R? {
  * println(safeDivide(0))  // Failure(java.lang.ArithmeticException: / by zero)
  */
 fun <A, R> safeCall(f: (A) -> R): (A) -> Result<R> {
-    TODO()
+    return {
+        arg: A ->
+        runCatching { f(arg) }
+    }
 }
 
 /**
@@ -62,7 +77,13 @@ fun <A, R> safeCall(f: (A) -> R): (A) -> Result<R> {
  * 15
  */
 fun <A, R> logCalls(name: String, f: (A) -> R): (A) -> R {
-    TODO()
+    return {
+        arg: A ->
+        println("[$name] вызвана с аргументом: $arg")
+        val res = f(arg)
+        println("[$name] вернула результат: $res")
+        res
+    }
 }
 
 
@@ -81,7 +102,15 @@ fun <A, R> logCalls(name: String, f: (A) -> R): (A) -> R {
  * println(safe()) // ok
  */
 fun <T> retry(times: Int, f: () -> T): () -> T {
-    TODO()
+    return {
+        var attempt = 0
+        var res: Result<T>
+        do {
+            res = runCatching { f() }
+            attempt++
+        } while (res.isFailure && attempt < times)
+        res.getOrThrow()
+    }
 }
 
 /**
@@ -101,7 +130,14 @@ fun <T> retry(times: Int, f: () -> T): () -> T {
  * println(slowFn(10))
  */
 fun <A, R> timed(name: String, f: (A) -> R): (A) -> R {
-    TODO()
+    return {
+        arg: A ->
+        var res: R
+        val time = measureTimeMillis { res = f(arg) }
+        println("[$name] выполнено за $time мс")
+
+        res
+    }
 }
 
 /**
@@ -124,5 +160,13 @@ fun <A, R> timed(name: String, f: (A) -> R): (A) -> R {
  *
  */
 fun <A, R> memoizeWith(capacity: Int, f: (A) -> R): (A) -> R {
-    TODO()
+    val cache = object : LinkedHashMap<A, R>(capacity, 0.75f, true) {
+        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<A, R>?): Boolean {
+            return size > capacity
+        }
+    }
+    return {
+        arg: A ->
+        cache[arg] ?: f(arg).also { cache[arg] = it }
+    }
 }
