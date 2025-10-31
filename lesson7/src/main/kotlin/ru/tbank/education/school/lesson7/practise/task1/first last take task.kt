@@ -14,21 +14,21 @@ import java.time.LocalDateTime
  * - первые N событий за сегодня.
  */
 enum class EventType {
-  LOGIN,
-  LOGOUT,
-  ERROR,
-  INFO,
+    LOGIN,
+    LOGOUT,
+    ERROR,
+    INFO,
 }
 
 data class Event(val type: EventType, val date: LocalDateTime)
 
 fun sliceEvents(events: List<Event>, nToday: Int): Triple<Event?, List<Event>, List<Event>> {
-  val firstError = events.firstOrNull { it.type == EventType.ERROR }
+    val firstError = events.firstOrNull { it.type == EventType.ERROR }
 
-  val lastTwoLogins = events.filter { it.type == EventType.LOGIN }.takeLast(2)
+    val lastTwoLogins = events.filter { it.type == EventType.LOGIN }.takeLast(2)
 
-  val today = LocalDateTime.now().toLocalDate()
-  val firstNToday = events.filter { it.date.toLocalDate() == today }.take(nToday)
+    val today = LocalDateTime.now().toLocalDate()
+    val firstNToday = events.filter { it.date.toLocalDate() == today }.take(nToday)
 
-  return Triple(firstError, lastTwoLogins, firstNToday)
+    return Triple(firstError, lastTwoLogins, firstNToday)
 }

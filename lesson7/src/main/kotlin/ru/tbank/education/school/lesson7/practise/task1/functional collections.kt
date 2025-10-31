@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunctions")
+
 package ru.tbank.education.school.lesson7.practise.task1
 
 import java.util.Locale.getDefault
@@ -7,64 +9,64 @@ import java.util.Locale.getDefault
  * ниже в функциональном стиле (используя filter).
  */
 fun filterEvenNumbers(numbers: List<Int>): List<Int> {
-  return numbers.filter { it % 2 == 0 }
+    return numbers.filter { it % 2 == 0 }
 }
 
 /** Задание 2. Преобразуй все имена в нижний регистр. Используй map вместо цикла. */
 fun lowerCaseNames(names: List<String>): List<String> {
-  return names.map { it -> it.lowercase(getDefault()) }
+    return names.map { it.lowercase(getDefault()) }
 }
 
 /** Задание 3. Подсчитай сумму всех чисел в списке. Используй sum() или reduce(). */
 fun sumPrices(prices: List<Int>): Int {
-  return prices.sum()
+    return prices.sum()
 }
 
 /** Задание 4. Найди средний возраст людей. Используй map и average. */
 data class Person(val name: String, val age: Int)
 
 fun averageAge(people: List<Person>): Double {
-  return people.map { it.age }.average()
+    return people.map { it.age }.average()
 }
 
 /** Задание 5. Верни сумму только положительных чисел. Используй filter и sum(). */
 fun sumPositive(numbers: List<Int>): Int {
-  return numbers.filter { it > 0 }.sum()
+    return numbers.filter { it > 0 }.sum()
 }
 
 /** Задание 6. Сгруппируй слова по первой букве. Используй groupBy. */
 fun groupWordsByFirstLetter(words: List<String>): Map<Char, List<String>> {
-  return words.groupBy { it[0] }
+    return words.groupBy { it[0] }
 }
 
 /** Задание 7. Проверь, что все числа положительные. Используй all { it > 0 }. */
 fun areAllPositive(numbers: List<Int>): Boolean {
-  return numbers.all { it > 0 }
+    return numbers.all { it > 0 }
 }
 
 /** Задание 8. Подсчитай количество слов длиной больше 3 символов. Используй count. */
 fun countLongWords(words: List<String>): Int {
-  return words.count { it.length > 3 }
+    return words.count { it.length > 3 }
 }
 
 /** Задание 9. Верни квадраты только чётных чисел. Используй цепочку filter → map. */
 fun squaredEvenNumbers(numbers: List<Int>): List<Int> {
-  return numbers.filter { it % 2 == 0 }.map { it * it }
+    return numbers.filter { it % 2 == 0 }.map { it * it }
 }
 
 /** Задание 10. Удали дубликаты из списка. Используй distinct(). */
 fun uniqueElements(data: List<Int>): List<Int> {
-  return data.distinct()
+    return data.distinct()
 }
 
 /** Задание 11. Объедини два списка. Используй плюс-оператор (+) или plus(). */
 fun mergeLists(list1: List<Int>, list2: List<Int>): List<Int> {
-  return list1 + list2
+    return list1 + list2
 }
 
 /** Задание 12. Сумма транзакций по категории FOOD. Используй filter и sumOf. */
 data class Transaction(val id: Int, val amount: Int, val category: String)
 
 fun totalFoodExpenses(txs: List<Transaction>): Int {
-  return txs.filter { tx -> tx.category == "FOOD" }.sumOf { transaction -> transaction.amount }
+    return txs.filter { tx -> tx.category == "FOOD" }.sumOf { transaction -> transaction.amount }
 }

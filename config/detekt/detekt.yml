@@ -6,3 +6,11 @@ comments:
     active: true
   UndocumentedPublicProperty:
     active: true
+
+formatting:
+  Filename:
+    active: false
+
+style:
+  MagicNumber:
+    active: false

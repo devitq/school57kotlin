@@ -13,12 +13,12 @@ package ru.tbank.education.school.lesson7.practise.task1 // 4) FILTER — выя
  * Верни список подозрительных операций.
  */
 enum class TxCategory {
-  FOOD,
-  SHOPPING,
-  CRYPTO,
-  GAMBLING,
-  TRANSFER,
-  OTHER,
+    FOOD,
+    SHOPPING,
+    CRYPTO,
+    GAMBLING,
+    TRANSFER,
+    OTHER,
 }
 
 data class Tx(
@@ -29,10 +29,10 @@ data class Tx(
 )
 
 fun suspiciousTransactions(txs: List<Tx>, threshold: Double, foreignThreshold: Double): List<Tx> {
-  val suspiciousCategories = setOf(TxCategory.CRYPTO, TxCategory.GAMBLING)
-  return txs.filter { tx ->
-    tx.amount > threshold ||
-        tx.category in suspiciousCategories ||
-        (tx.country != "RU" && tx.amount > foreignThreshold)
-  }
+    val suspiciousCategories = setOf(TxCategory.CRYPTO, TxCategory.GAMBLING)
+    return txs.filter { tx ->
+        tx.amount > threshold ||
+            tx.category in suspiciousCategories ||
+            (tx.country != "RU" && tx.amount > foreignThreshold)
+    }
 }

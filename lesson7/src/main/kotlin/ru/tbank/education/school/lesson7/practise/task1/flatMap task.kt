@@ -24,17 +24,17 @@ data class LineItem(
 )
 
 fun expandOrders(orders: List<Order>, tax: Double = 0.20): List<LineItem> {
-  return orders.flatMap { order ->
-    order.items.map { item ->
-      val total = item.quantity * item.pricePerUnit
-      val totalWithTax = total * (1 + tax)
-      LineItem(
-          orderId = order.id,
-          productId = item.productId,
-          quantity = item.quantity,
-          total = total,
-          totalWithTax = totalWithTax,
-      )
+    return orders.flatMap { order ->
+        order.items.map { item ->
+            val total = item.quantity * item.pricePerUnit
+            val totalWithTax = total * (1 + tax)
+            LineItem(
+                orderId = order.id,
+                productId = item.productId,
+                quantity = item.quantity,
+                total = total,
+                totalWithTax = totalWithTax,
+            )
+        }
     }
-  }
 }

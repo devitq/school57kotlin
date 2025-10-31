@@ -24,7 +24,7 @@ import kotlin.system.measureTimeMillis
 fun <A, R> limitRate(intervalMs: Long, f: (A) -> R): (A) -> R? {
     var lastCallTime = 0L
     return {
-        arg: A ->
+            arg: A ->
         val now = System.currentTimeMillis()
         if (now - lastCallTime >= intervalMs) {
             lastCallTime = now
@@ -34,7 +34,6 @@ fun <A, R> limitRate(intervalMs: Long, f: (A) -> R): (A) -> R? {
         }
     }
 }
-
 
 /**
  * Реализуй декоратор safeCall(f: (A) -> R): (A) -> Result<R>
@@ -53,7 +52,7 @@ fun <A, R> limitRate(intervalMs: Long, f: (A) -> R): (A) -> R? {
  */
 fun <A, R> safeCall(f: (A) -> R): (A) -> Result<R> {
     return {
-        arg: A ->
+            arg: A ->
         runCatching { f(arg) }
     }
 }
@@ -78,14 +77,13 @@ fun <A, R> safeCall(f: (A) -> R): (A) -> Result<R> {
  */
 fun <A, R> logCalls(name: String, f: (A) -> R): (A) -> R {
     return {
-        arg: A ->
+            arg: A ->
         println("[$name] вызвана с аргументом: $arg")
         val res = f(arg)
         println("[$name] вернула результат: $res")
         res
     }
 }
-
 
 /**
  * Ретрай-обёртка.
@@ -131,7 +129,7 @@ fun <T> retry(times: Int, f: () -> T): () -> T {
  */
 fun <A, R> timed(name: String, f: (A) -> R): (A) -> R {
     return {
-        arg: A ->
+            arg: A ->
         var res: R
         val time = measureTimeMillis { res = f(arg) }
         println("[$name] выполнено за $time мс")
@@ -166,7 +164,7 @@ fun <A, R> memoizeWith(capacity: Int, f: (A) -> R): (A) -> R {
         }
     }
     return {
-        arg: A ->
+            arg: A ->
         cache[arg] ?: f(arg).also { cache[arg] = it }
     }
 }

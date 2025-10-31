@@ -1,3 +1,5 @@
+@file:Suppress("MatchingDeclarationName")
+
 package ru.tbank.education.school.lesson7.practise.task1 // 6) GROUPBY — топ категорий по расходам
 
 /**
@@ -13,9 +15,9 @@ package ru.tbank.education.school.lesson7.practise.task1 // 6) GROUPBY — то�
 data class Transfer(val category: String, val amount: Double)
 
 fun top3Categories(transfers: List<Transfer>): List<Pair<String, Double>> {
-  return transfers
-      .groupBy { it.category }
-      .map() { transfer -> Pair(transfer.key, transfer.value.sumOf { it.amount }) }
-      .sortedByDescending { it.second }
-      .take(3)
+    return transfers
+        .groupBy { it.category }
+        .map { transfer -> Pair(transfer.key, transfer.value.sumOf { it.amount }) }
+        .sortedByDescending { it.second }
+        .take(3)
 }

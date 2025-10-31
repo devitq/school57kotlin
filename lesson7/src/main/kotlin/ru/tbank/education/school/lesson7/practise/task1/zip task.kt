@@ -1,3 +1,5 @@
+@file:Suppress("MatchingDeclarationName")
+
 package ru.tbank.education.school.lesson7.practise.task1
 
 import java.time.LocalDate
@@ -12,5 +14,5 @@ import java.time.LocalDate
 data class Measurement(val date: LocalDate, val value: Double)
 
 fun zipMeasurements(dates: List<LocalDate>, values: List<Double>): List<Measurement> {
-  return dates.zip(values) { date, value -> Measurement(date, value) }
+    return dates.zip(values) { date, value -> Measurement(date, value) }
 }

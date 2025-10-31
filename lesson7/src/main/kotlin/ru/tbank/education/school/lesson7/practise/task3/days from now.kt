@@ -14,4 +14,5 @@ import java.time.LocalDate
  * println(deadline) // Текущая дата + 5 дней
  * ```
  */
+@Suppress("UNUSED_PARAMETER")
 infix fun Int.daysFromNow(ignore: Unit): LocalDate = LocalDate.now().plusDays(this.toLong())
