@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>UndocumentedPublicClass:filter task.kt$Tx</ID>
+    <ID>UndocumentedPublicClass:first last take task.kt$Event</ID>
+    <ID>UndocumentedPublicClass:flatMap task.kt$LineItem</ID>
+    <ID>UndocumentedPublicClass:flatMap task.kt$OrderItem</ID>
+    <ID>UndocumentedPublicClass:fold task.kt$SalaryReport</ID>
+    <ID>UndocumentedPublicFunction:arithmetic.kt$infix fun Int.divide(other: Int): Int</ID>
+    <ID>UndocumentedPublicFunction:arithmetic.kt$infix fun Int.multiply(other: Int): Int</ID>
+    <ID>UndocumentedPublicFunction:arithmetic.kt$infix fun Int.subtract(other: Int): Int</ID>
+    <ID>UndocumentedPublicFunction:filter task.kt$fun suspiciousTransactions(txs: List&lt;Tx&gt;, threshold: Double, foreignThreshold: Double): List&lt;Tx&gt;</ID>
+    <ID>UndocumentedPublicFunction:filter.kt$infix fun User.ageGreaterThan(age: Int): Boolean</ID>
+    <ID>UndocumentedPublicFunction:filter.kt$infix fun User.livesIn(city: String): Boolean</ID>
+    <ID>UndocumentedPublicFunction:first last take task.kt$fun sliceEvents(events: List&lt;Event&gt;, nToday: Int): Triple&lt;Event?, List&lt;Event&gt;, List&lt;Event&gt;&gt;</ID>
+    <ID>UndocumentedPublicFunction:flatMap task.kt$fun expandOrders(orders: List&lt;Order&gt;, tax: Double = 0.20): List&lt;LineItem&gt;</ID>
+    <ID>UndocumentedPublicFunction:fold task.kt$fun buildSalaryReport(employees: List&lt;Employee&gt;): SalaryReport</ID>
+    <ID>UndocumentedPublicFunction:functional collections.kt$fun averageAge(people: List&lt;Person&gt;): Double</ID>
+    <ID>UndocumentedPublicFunction:functional collections.kt$fun totalFoodExpenses(txs: List&lt;Transaction&gt;): Int</ID>
+    <ID>UndocumentedPublicFunction:groupBy task.kt$fun top3Categories(transfers: List&lt;Transfer&gt;): List&lt;Pair&lt;String, Double&gt;&gt;</ID>
+    <ID>UndocumentedPublicFunction:inline functions.kt$fun main()</ID>
+    <ID>UndocumentedPublicFunction:inline functions.kt$inline fun runTwice(action: () -&gt; Unit)</ID>
+    <ID>UndocumentedPublicFunction:zip task.kt$fun zipMeasurements(dates: List&lt;LocalDate&gt;, values: List&lt;Double&gt;): List&lt;Measurement&gt;</ID>
+    <ID>UndocumentedPublicProperty:filter task.kt$Tx$val amount: Double</ID>
+    <ID>UndocumentedPublicProperty:filter task.kt$Tx$val category: TxCategory</ID>
+    <ID>UndocumentedPublicProperty:filter task.kt$Tx$val country: String</ID>
+    <ID>UndocumentedPublicProperty:filter task.kt$Tx$val timestamp: Long</ID>
+    <ID>UndocumentedPublicProperty:filter.kt$User$val age: Int</ID>
+    <ID>UndocumentedPublicProperty:filter.kt$User$val city: String</ID>
+    <ID>UndocumentedPublicProperty:filter.kt$User$val name: String</ID>
+    <ID>UndocumentedPublicProperty:filter.kt$User$val roles: Set&lt;String&gt; = setOf()</ID>
+    <ID>UndocumentedPublicProperty:first last take task.kt$Event$val date: LocalDateTime</ID>
+    <ID>UndocumentedPublicProperty:first last take task.kt$Event$val type: EventType</ID>
+    <ID>UndocumentedPublicProperty:flatMap task.kt$LineItem$val orderId: String</ID>
+    <ID>UndocumentedPublicProperty:flatMap task.kt$LineItem$val productId: String</ID>
+    <ID>UndocumentedPublicProperty:flatMap task.kt$LineItem$val quantity: Int</ID>
+    <ID>UndocumentedPublicProperty:flatMap task.kt$LineItem$val total: Double</ID>
+    <ID>UndocumentedPublicProperty:flatMap task.kt$LineItem$val totalWithTax: Double</ID>
+    <ID>UndocumentedPublicProperty:flatMap task.kt$Order$val id: String</ID>
+    <ID>UndocumentedPublicProperty:flatMap task.kt$Order$val items: List&lt;OrderItem&gt;</ID>
+    <ID>UndocumentedPublicProperty:flatMap task.kt$OrderItem$val pricePerUnit: Double</ID>
+    <ID>UndocumentedPublicProperty:flatMap task.kt$OrderItem$val productId: String</ID>
+    <ID>UndocumentedPublicProperty:flatMap task.kt$OrderItem$val quantity: Int</ID>
+    <ID>UndocumentedPublicProperty:fold task.kt$Employee$val department: String</ID>
+    <ID>UndocumentedPublicProperty:fold task.kt$Employee$val name: String</ID>
+    <ID>UndocumentedPublicProperty:fold task.kt$Employee$val salary: Double</ID>
+    <ID>UndocumentedPublicProperty:fold task.kt$SalaryReport$val avgSalary: Double</ID>
+    <ID>UndocumentedPublicProperty:fold task.kt$SalaryReport$val departmentsCount: Int</ID>
+    <ID>UndocumentedPublicProperty:fold task.kt$SalaryReport$val totalSalary: Double</ID>
+    <ID>UndocumentedPublicProperty:functional collections.kt$Person$val age: Int</ID>
+    <ID>UndocumentedPublicProperty:functional collections.kt$Person$val name: String</ID>
+    <ID>UndocumentedPublicProperty:functional collections.kt$Transaction$val amount: Int</ID>
+    <ID>UndocumentedPublicProperty:functional collections.kt$Transaction$val category: String</ID>
+    <ID>UndocumentedPublicProperty:functional collections.kt$Transaction$val id: Int</ID>
+    <ID>UndocumentedPublicProperty:groupBy task.kt$Transfer$val amount: Double</ID>
+    <ID>UndocumentedPublicProperty:groupBy task.kt$Transfer$val category: String</ID>
+    <ID>UndocumentedPublicProperty:zip task.kt$Measurement$val date: LocalDate</ID>
+    <ID>UndocumentedPublicProperty:zip task.kt$Measurement$val value: Double</ID>
+  </CurrentIssues>
+</SmellBaseline>

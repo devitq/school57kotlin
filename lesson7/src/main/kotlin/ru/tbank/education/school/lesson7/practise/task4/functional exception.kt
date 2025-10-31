@@ -1,13 +1,13 @@
+@file:Suppress("ALL")
+
 package ru.tbank.education.school.lesson7.practise.task4
 
 fun riskyOperation(): String {
-    if (Math.random() < 0.5)
-        throw RuntimeException("Что-то сломалось!")
+    if (Math.random() < 0.5) throw RuntimeException("Что-то сломалось!")
     return "На этот раз повезло, ошибки нет!"
 }
 
-fun riskyDivide(a: Int, b: Int): Result<Int> =
-    runCatching { a / b }
+fun riskyDivide(a: Int, b: Int): Result<Int> = runCatching { a / b }
 
 fun main() {
     try {
@@ -19,8 +19,5 @@ fun main() {
 
     val result = riskyDivide(10, 0)
 
-    result
-        .onSuccess { println("Результат: $it") }
-        .onFailure { println("Ошибка: ${it.message}") }
+    result.onSuccess { println("Результат: $it") }.onFailure { println("Ошибка: ${it.message}") }
 }
-

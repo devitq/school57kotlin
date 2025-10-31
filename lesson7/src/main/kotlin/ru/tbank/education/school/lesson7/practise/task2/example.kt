@@ -1,3 +1,5 @@
+@file:Suppress("ALL")
+
 package ru.tbank.education.school.lesson7.practise.task2
 
 /**
@@ -8,15 +10,11 @@ package ru.tbank.education.school.lesson7.practise.task2
  * @param times — количество попыток (включая первую)
  * @param delayMs — задержка между попытками (по умолчанию 0)
  * @param f — исходная функция, которую нужно обернуть
- *
  * @return новая функция, повторяющая вызов при ошибке
  */
-fun <A, R> retry(
-    times: Int,
-    delayMs: Long = 0,
-    f: (A) -> R
-): (A) -> R = { a ->
-    (1..times).asSequence()
+fun <A, R> retry(times: Int, delayMs: Long = 0, f: (A) -> R): (A) -> R = { a ->
+    (1..times)
+        .asSequence()
         .map { attempt ->
             runCatching { f(a) }
                 .onFailure {
@@ -25,13 +23,11 @@ fun <A, R> retry(
                 }
         }
         .firstOrNull { it.isSuccess }
-        ?.getOrThrow()
-        ?: throw IllegalStateException("Не удалось выполнить после $times попыток")
+        ?.getOrThrow() ?: throw IllegalStateException("Не удалось выполнить после $times попыток")
 }
 
 fun unstableOperation(id: Int): String {
-    if (Math.random() < 0.5)
-        error("Случайный сбой")
+    if (Math.random() < 0.5) error("Случайный сбой")
     return "Результат для $id"
 }
 
