@@ -12,5 +12,4 @@ package ru.tbank.education.school.lesson7.practise.task3
  * println(age inRange 40..50) // false
  * ```
  */
-
-infix fun Int.inRange(range: IntRange): Boolean = TODO()
+infix fun Int.inRange(range: IntRange): Boolean = this in range
