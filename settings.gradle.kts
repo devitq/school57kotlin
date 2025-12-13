@@ -12,9 +12,9 @@ plugins {
 
 rootProject.name = "school57kotlin"
 include("lesson1")
-//include("lesson2")
+include("lesson2")
 include("lesson3")
-//include("lesson4")
+include("lesson4")
 include("lesson5")
 include("lesson6")
 include("lesson7")
@@ -22,4 +22,3 @@ include("lesson7")
 include("lesson8")
 include("lesson9")
 include("lesson10")
-include("lesson11")
