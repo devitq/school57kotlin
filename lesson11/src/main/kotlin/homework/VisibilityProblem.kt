@@ -8,6 +8,7 @@
  */
 class VisibilityProblem {
 
+    @Volatile
     private var running = true
 
     /**

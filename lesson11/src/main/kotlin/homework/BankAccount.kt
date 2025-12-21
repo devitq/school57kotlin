@@ -15,13 +15,16 @@ package homework
  * 2. Исправьте метод `transfer()` так, чтобы дедлок был невозможен
  * 3. Убедитесь, что все тесты проходят
  */
-class BankAccount(val id: String, var balance: Int) {
+class BankAccount(val id : String, var balance : Int) {
 
-    fun transfer(to: BankAccount, amount: Int) {
-        synchronized(this) {
+    fun transfer(to : BankAccount, amount : Int) {
+        val firstLock : BankAccount = arrayOf(this, to).minBy { it.id }
+        val secondLock : BankAccount = arrayOf(this, to).maxBy { it.id }
+
+        synchronized(firstLock) {
             Thread.sleep(10)
-            
-            synchronized(to) {
+
+            synchronized(secondLock) {
                 if (balance >= amount) {
                     balance -= amount
                     to.balance += amount
