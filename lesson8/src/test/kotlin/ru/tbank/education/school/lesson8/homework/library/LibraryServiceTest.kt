@@ -2,8 +2,8 @@ package ru.tbank.education.school.lesson8.homework.library
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
 class LibraryServiceTest {
 
@@ -98,7 +98,7 @@ class LibraryServiceTest {
 
         library.addBook(book1)
         library.addBook(book2)
-        library.borrowBook("978-0-452-28423-4", "Ivan")
+        library.borrowBook("978-0-452-28423-4", "Ivan", 11)
 
         assertThrows(IllegalArgumentException::class.java) {
             library.borrowBook("978-0-441-17271-9", "Ivan")
