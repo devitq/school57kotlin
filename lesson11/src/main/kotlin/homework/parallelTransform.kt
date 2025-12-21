@@ -15,10 +15,10 @@ import kotlinx.coroutines.coroutineScope
  * @return список преобразованных элементов в исходном порядке
  */
 suspend fun <T, R> parallelTransform(
-    items : List<T>,
-    transform : suspend (T) -> R
-) : List<R> = coroutineScope {
-    val coroutines : List<Deferred<R>> = items.map {
+    items: List<T>,
+    transform: suspend (T) -> R
+): List<R> = coroutineScope {
+    val coroutines: List<Deferred<R>> = items.map {
         async { transform(it) }
     }
 
